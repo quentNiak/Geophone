@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_addcontact"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.quent.geophone.AddContactActivity">
+
+    <TextView
+        android:text="@string/nomContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/editTextNumContact"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:id="@+id/textView2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/textBluetoothContact"
+        android:ems="10"
+        android:layout_marginTop="11dp"
+        android:id="@+id/editTextBluetoothContact"
+        android:layout_below="@+id/editTextMailContact"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/textMailContact"
+        android:ems="10"
+        android:layout_marginTop="12dp"
+        android:id="@+id/editTextMailContact"
+        android:layout_below="@+id/editTextNumContact"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/textNomContact"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="45dp"
+        android:id="@+id/editTextNomContact" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/textNumContact"
+        android:ems="10"
+        android:layout_marginTop="11dp"
+        android:id="@+id/editTextNumContact"
+        android:layout_below="@+id/editTextNomContact"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="@string/textWifiContact"
+        android:ems="10"
+        android:id="@+id/editTextWIFIContact"
+        android:layout_below="@+id/editTextBluetoothContact"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:text="@string/numContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewNom"
+        android:layout_alignBaseline="@+id/editTextNumContact"
+        android:layout_alignBottom="@+id/editTextNumContact"
+        android:layout_alignStart="@+id/textView2" />
+
+    <Button
+        android:text="@string/buttonTextAddContactSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:id="@+id/buttonAddContactSave"
+        android:layout_below="@+id/editTextWIFIContact"
+        android:layout_toStartOf="@+id/buttonAddContactBack"
+        android:layout_marginEnd="11dp" />
+
+    <Button
+        android:text="@string/buttonTextAddContactBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:id="@+id/buttonAddContactBack"
+        android:layout_alignBaseline="@+id/buttonAddContactSave"
+        android:layout_alignBottom="@+id/buttonAddContactSave"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

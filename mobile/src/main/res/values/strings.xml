@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">Geophone</string>
     <string name="vibrate">Faire Vibrer</string>
+    <string name="call">Appeller</string>
+    <string name="bluetoothON">Bluetooth ON</string>
+    <string name="bluetoothOFF">Bluetooth OFF</string>
+    <string name="getBluetooth">Rechercher Bluetooth</string>
+    <string name="buttonTextAccueilCreateContact">Créer Contact</string>
+    <string name="nomContact">Nom:</string>
+    <string name="textNomContact">Nom</string>
+    <string name="numContact">Numéro:</string>
+    <string name="textNumContact">Tel</string>
+    <string name="mailContact">Mail:</string>
+    <string name="textMailContact">Email</string>
+    <string name="bluetoothContact">Bluetooth:</string>
+    <string name="textBluetoothContact">Réseau Bluetooth</string>
+    <string name="wifiContact">WIFI:</string>
+    <string name="textWifiContact">Réseau WIFI</string>
+    <string name="buttonTextAddContactSave">Enregistrer Contact</string>
+    <string name="buttonTextAddContactBack">Annuler</string>
 </resources>

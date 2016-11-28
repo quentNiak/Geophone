@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -19,4 +21,51 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="68dp"
         android:id="@+id/buttonVibrate" />
+
+    <Button
+        android:text="@string/call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonVibrate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:id="@+id/buttonCall" />
+
+    <Button
+        android:text="@string/bluetoothON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="71dp"
+        android:id="@+id/buttonBluetoothON"
+        android:layout_marginStart="33dp"
+        android:layout_below="@+id/buttonCall"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="@string/bluetoothOFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonBluetoothOFF"
+        android:layout_alignBaseline="@+id/buttonBluetoothON"
+        android:layout_alignBottom="@+id/buttonBluetoothON"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="28dp" />
+
+    <Button
+        android:text="@string/getBluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:id="@+id/buttonGetBluetooth"
+        android:layout_below="@+id/buttonBluetoothON"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="@string/buttonTextAccueilCreateContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonGetBluetooth"
+        android:layout_alignEnd="@+id/buttonCall"
+        android:id="@+id/buttonAccueilCreateContact" />
+
 </RelativeLayout>
