@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -67,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
 
         Listener buttonBluetoothListener = new Listener(buttonBluetooth);
         buttonBluetoothListener.setContext(getApplicationContext());
-        buttonBluetooth.setOnClickListener(buttonBluetoothListener);*/
+        buttonBluetooth.setOnClickListener(buttonBluetoothListener);
 
-        /*if (ActivityCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE)
+        if (ActivityCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -215,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
-                    //System.out.println("CHANGE DECRAN BATARD!!");
+                    System.out.println("CHANGE DECRAN BATARD!!");
                     startActivity(intent);
                     finish();
 
