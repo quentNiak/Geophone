@@ -6,20 +6,54 @@
     <string name="bluetoothOFF">Bluetooth OFF</string>
     <string name="getBluetooth">Rechercher Bluetooth</string>
     <string name="buttonTextAccueilCreateContact">Créer Contact</string>
+
     <string name="nomContact">Nom:</string>
-    <string name="textNomContact">Nom</string>
     <string name="numContact">Numéro:</string>
-    <string name="textNumContact">Tel</string>
     <string name="mailContact">Mail:</string>
-    <string name="textMailContact">Email</string>
     <string name="bluetoothContact">Bluetooth:</string>
-    <string name="textBluetoothContact">Réseau Bluetooth</string>
     <string name="wifiContact">WIFI:</string>
-    <string name="textWifiContact">Réseau WIFI</string>
     <string name="buttonTextAddContactSave">Enregistrer Contact</string>
     <string name="buttonTextAddContactBack">Annuler</string>
+    <!--<string name="textNomContact">Nom</string>
+    <string name="textNumContact">Tel</string>
+    <string name="textMailContact">Email</string>
+    <string name="textBluetoothContact">Réseau Bluetooth</string>
+    <string name="textWifiContact">Réseau WIFI</string>-->
+
     <string name="buttonModifyContact">Modifier</string>
     <string name="buttonDeleteContact">Supprimer</string>
     <string name="buttonManageContactBack">Annuler</string>
     <string name="buttonManageContact">Gérer Contact</string>
+
+
+    <string name="buttonBackFromInfoToMain">Annuler</string>
+    <string name="buttonInfoAppli">Informations</string>
+    <string name="textViewInfoAppli">Informations</string>
+    <string name="textViewInfo">LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA
+    LISEZ LES INFOS CEST COOL EST CE QUE CA PASSE A LA LIGNE SI JE FAIS CA BLABLABLA</string>
+    <string name="buttonSendSMS">Envoyer SMS</string>
+
+    <string name="editViewResearch">Rechercher</string>
+    <string name="buttonRing">Faire Sonner</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="buttonGetGPS">Récupérer Coordonnées GPS</string>
+    <string name="buttonDisplayMap">Afficher Carte</string>
+
 </resources>

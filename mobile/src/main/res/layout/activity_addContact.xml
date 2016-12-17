@@ -10,20 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.quent.geophone.AddContactActivity">
 
-    <TextView
-        android:text="@string/nomContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/editTextNumContact"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:id="@+id/textView2" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/textBluetoothContact"
+        android:text=""
         android:ems="10"
         android:layout_marginTop="11dp"
         android:id="@+id/editTextBluetoothContact"
@@ -34,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/textMailContact"
+        android:text=""
         android:ems="10"
         android:layout_marginTop="12dp"
         android:id="@+id/editTextMailContact"
@@ -45,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/textNomContact"
+        android:text=""
         android:ems="10"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -56,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/textNumContact"
+        android:text=""
         android:ems="10"
         android:layout_marginTop="11dp"
         android:id="@+id/editTextNumContact"
@@ -67,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/textWifiContact"
+        android:text=""
         android:ems="10"
         android:id="@+id/editTextWIFIContact"
         android:layout_below="@+id/editTextBluetoothContact"
@@ -102,4 +93,40 @@
         android:layout_alignBaseline="@+id/buttonAddContactSave"
         android:layout_alignBottom="@+id/buttonAddContactSave"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="@string/wifiContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wifiContact"
+        android:layout_alignBaseline="@+id/editTextWIFIContact"
+        android:layout_alignBottom="@+id/editTextWIFIContact"
+        android:layout_alignStart="@+id/mailContact" />
+
+    <TextView
+        android:text="@string/bluetoothContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bluetoothContact"
+        android:layout_alignBaseline="@+id/editTextBluetoothContact"
+        android:layout_alignBottom="@+id/editTextBluetoothContact"
+        android:layout_alignStart="@+id/mailContact" />
+
+    <TextView
+        android:text="@string/mailContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mailContact"
+        android:layout_alignBaseline="@+id/editTextMailContact"
+        android:layout_alignBottom="@+id/editTextMailContact"
+        android:layout_alignStart="@+id/textViewNom" />
+
+    <TextView
+        android:text="@string/nomContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_above="@+id/editTextNumContact"
+        android:layout_alignStart="@+id/buttonAddContactSave" />
+
 </RelativeLayout>

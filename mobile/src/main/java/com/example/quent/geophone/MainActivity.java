@@ -2,34 +2,29 @@ package com.example.quent.geophone;
 
 import android.*;
 import android.Manifest;
+import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
+import android.location.Location;
+
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.view.View;
-import android.widget.ArrayAdapter;
+
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
+
 import android.widget.Toast;
-import android.view.View.OnClickListener;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
+import android.support.v4.content.ContextCompat;
+import android.app.Activity;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +32,16 @@ public class MainActivity extends AppCompatActivity {
     //private final static int REQUEST_ENABLE_BT = 0;
     final Context context = this;
     private Bundle testBundle;
+    private static final String bluetoothName = "Windows Phone";
+    private String requestGPSmessage = "Geophone GPS";
+    private String phoneNumber = "0604419214";
 
+    private LocationGPS localisationPerso;
+    private double latitudeCible =48.856614;
+    private double longitudeCible =2.352221;
+    private String deviceName ="telephone Cible";
+
+    private SmsReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,47 @@ public class MainActivity extends AppCompatActivity {
 
         //addListenerOnButton();
 
+        localisationPerso = new LocationGPS(getApplicationContext());
+
+
+        /**
+         * On vérifie les Permissions de l'utilisateur : GPS, SMS, ...
+         */
+        /*if(checkForPermissions(this)==true){
+            //Si on a les droits
+            //initProgram();
+            Toast.makeText(getApplicationContext(),"Vous disposez des autorisations nécessaires pour le bon fonctionnement de l'application", Toast.LENGTH_LONG).show();
+        }
+
+        else{
+            //Si on a pas les droits, on les demande
+            Toast.makeText(getApplicationContext(),"Vous ne disposez pas des autorisations suffisantes", Toast.LENGTH_LONG).show();
+            permissionManagement();
+            //finish();
+        }
+*/
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @Override
     protected void onStart() {
@@ -106,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         Button buttonBluetoothOFF = (Button) findViewById(R.id.buttonBluetoothOFF);
         Button buttonGetBluetooth = (Button) findViewById(R.id.buttonGetBluetooth);
         final BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        BluetoothDevice deviceBlue;
 
         //ListView lv = (ListView)findViewById(R.id.listView);
 
@@ -125,7 +170,13 @@ public class MainActivity extends AppCompatActivity {
                     // Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                     startActivityForResult(new Intent(
                             BluetoothAdapter.ACTION_REQUEST_ENABLE), 0);
+
+
+
                 }
+
+
+
             }
         });
 
@@ -134,8 +185,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
                 bluetoothAdapter.disable();
-                Toast.makeText(getApplicationContext(),
-                        "TURNING OFF BLUETOOTH", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"Turning OFF Bluetooth",Toast.LENGTH_SHORT).show();
                 }
         });
 
@@ -143,62 +193,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*buttonGetBluetooth.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                *//*final BroadcastReceiver receiver = new BroadcastReceiver()
-                {
-                    public void onReceive(Context context, Intent intent)
-                    {
-                        String action = intent.getAction();
-                        // Quand la recherche trouve un terminal
-                        if (BluetoothDevice.ACTION_FOUND.equals(action))
-                        {
-                            Spinner spinner = (Spinner) findViewById(R.id.spinner);
-                            ArrayAdapter dataAdapter = new ArrayAdapter();
-                            ArrayList list = new ArrayList();
-                            List<String> phones = new ArrayList<String>();
 
-                            // On récupère l'object BluetoothDevice depuis l'Intent
-                            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-                            // Creating adapter for spinner
-                            ArrayAdapter dataAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, categories);
-
-                            // On ajoute le nom et l'adresse du périphérique dans un ArrayAdapter (par exemple pour l'afficher dans une ListView)
-                            dataAdapter.add(device.getName() + "\n" + device.getAddress());
-
-                            // Drop down layout style - list view with radio button
-                            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                            // attaching data adapter to spinner
-                            spinner.setAdapter(dataAdapter);
-                        }
-                    }
-                }*//*
-
-                public void list(View v){
-                Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
-
-                ArrayList list = new ArrayList();
-
-                for(BluetoothDevice bt : pairedDevices) list.add(bt.getName());
-                Toast.makeText(getApplicationContext(), "Showing Paired Devices",Toast.LENGTH_SHORT).show();
-
-                final ArrayAdapter adapter = new  ArrayAdapter(this,android.R.layout.simple_list_item_1, list);
-
-                lv.setAdapter(adapter);
-            }
-            }
-        };
-
-        // Inscrire le BroadcastReceiver
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        registerReceiver(receiver, filter); // N'oubliez pas de le désinscrire lors du OnDestroy() !*/
-
-        //public void addListenerOnButton() {
             Button buttonAccueilCreateContact = (Button) findViewById(R.id.buttonAccueilCreateContact);
 
             buttonAccueilCreateContact.setOnClickListener(new View.OnClickListener() {
@@ -206,8 +202,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+                    Toast.makeText(getApplicationContext(),"ECRAN ACCUEIL: ALLER A L'ECRAN CREATION CONTACT",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
-                    System.out.println("VA A LECRAN AJOUT CONTACT BATARD!!");
                     startActivity(intent);
                     finish();
 
@@ -223,13 +219,81 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this, ManageContactActivity.class);
-                System.out.println("VA A LECRAN GESTION CONTACT BATARD!!");
+                Toast.makeText(getApplicationContext(),"ECRAN ACCUEIL: ALLER A L'ECRAN GESTION CONTACT",Toast.LENGTH_SHORT).show();
                 startActivity(intent);
                 finish();
 
             }
 
         });
+
+        Button buttonAccueilSeeInfos = (Button) findViewById(R.id.buttonInfoAppli);
+
+        buttonAccueilSeeInfos.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                Toast.makeText(getApplicationContext(),"ECRAN ACCUEIL: ALLER A LECRAN INFORMATIONS",Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                finish();
+
+            }
+
+        });
+
+
+        Button buttonSendSMS = (Button) findViewById(R.id.buttonSendSMS);
+
+        buttonSendSMS.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
+                intent.putExtra("sms_body", requestGPSmessage);
+                startActivity(intent);
+
+            }
+
+        });
+
+
+        Button boutonGPS = (Button) findViewById(R.id.buttonGetGPS);
+
+        boutonGPS.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Location localisationActuelle = localisationPerso.getLastLocation();
+                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + localisationActuelle.getLatitude() + "\nLong: " + localisationActuelle.getLongitude(), Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
+
+
+        Button boutonMAP = (Button) findViewById(R.id.buttonDisplayMap);
+
+        boutonMAP.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                //Toast.makeText(getApplicationContext(), "ici", Toast.LENGTH_LONG).show();
+                intent.putExtra("latitudeSearch", latitudeCible );
+                intent.putExtra("longitudeSearch", longitudeCible);
+                intent.putExtra("device name", deviceName);
+                startActivity(intent);
+                finish();            }
+
+        });
+
+
 
        // }
 
@@ -247,6 +311,84 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
     }
+
+    /*//sends an SMS message to another device---
+    private void sendSMS(String phoneNumber, String message)
+    {
+        PendingIntent pi = PendingIntent.getActivity(this, 0,
+                new Intent(this, MainActivity.class), 0);
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(phoneNumber, null, message, pi, null);
+        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+        sendIntent.putExtra("sms_body", "SALUT SALUT");
+        sendIntent.setType("vnd.android-dir/mms-sms");
+        startActivity(sendIntent);
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
+        intent.putExtra("sms_body", message);
+        startActivity(intent);
+    }*/
+
+    // FONCTIONS GPS//
+
+    /*protected boolean checkForPermissions (Activity activity){
+        *//**
+         * Fonction pour connaitre si ont a les permissions necessaires
+         *//*
+        //int permissionCheckReadContact= ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_CONTACTS);
+        int permissionCheckReceiveSMS = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.RECEIVE_SMS);
+        int permissionCheckReadSMS = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.READ_SMS);
+        int permissionCheckFineLocation = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION);
+        int permissionCheckCoarseLocation = ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_COARSE_LOCATION);
+        boolean check=false;
+
+        //On verifie si on a toutes les permissions
+        if( permissionCheckReadSMS== PackageManager.PERMISSION_GRANTED &&
+                permissionCheckReceiveSMS==PackageManager.PERMISSION_GRANTED &&
+                //permissionCheckReadContact==PackageManager.PERMISSION_GRANTED &&
+                permissionCheckFineLocation==PackageManager.PERMISSION_GRANTED &&
+                permissionCheckCoarseLocation==PackageManager.PERMISSION_GRANTED)
+        {
+            check=true;
+        }
+
+        else if(permissionCheckReadSMS==PackageManager.PERMISSION_DENIED ||
+                permissionCheckReceiveSMS==PackageManager.PERMISSION_DENIED ||
+                //permissionCheckReadContact==PackageManager.PERMISSION_DENIED ||
+                permissionCheckFineLocation==PackageManager.PERMISSION_DENIED ||
+                permissionCheckCoarseLocation==PackageManager.PERMISSION_DENIED)
+        {
+            check=false;
+        }
+
+        return check;
+    }
+
+    private void permissionManagement(){
+        ActivityCompat.requestPermissions(MainActivity.this,new String[]{android.Manifest.permission.READ_SMS,
+                android.Manifest.permission.RECEIVE_SMS,
+                android.Manifest.permission.READ_CONTACTS,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,}, 8);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 8: {
+                // grantResults[0] = -1
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+        }
+    }*/
+
+
 
 
 }

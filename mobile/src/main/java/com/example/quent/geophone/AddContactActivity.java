@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddContactActivity extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class AddContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View arg0) {
 
+                Toast.makeText(getApplicationContext(),"ECRAN AJOUT CONTACT: REVENIR A L'ECRAN D'ACCUEIL",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
 
@@ -46,11 +48,25 @@ public class AddContactActivity extends AppCompatActivity {
 
         });
 
+        /*buttonAddContactSave.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Toast.makeText(getApplicationContext(),"ECRAN AJOUT CONTACT: SAUVEGARDE CONTACT",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+
+            }
+
+        });*/
+
         buttonAddContactSave.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
 
+                Toast.makeText(getApplicationContext(),"ECRAN AJOUT CONTACT: SAUVEGARDE CONTACT",Toast.LENGTH_SHORT).show();
                 nomContact = editTextNomContact.getText().toString();
                 System.out.println("COORDONNES\n\n");
                 System.out.println(nomContact+"\n");
