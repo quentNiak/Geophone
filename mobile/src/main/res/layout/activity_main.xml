@@ -17,9 +17,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:weightSum="1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:weightSum="1">
+        android:layout_alignParentStart="true">
 
         <TextView
             android:text="@string/textViewWelcome"
@@ -33,12 +33,14 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="266dp"
-            android:layout_weight="0.76">
+            android:layout_weight="0.76"
+            android:id="@+id/scrollView1">
 
             <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:id="@+id/linearLayout1"></LinearLayout>
         </ScrollView>
 
         <Button
@@ -54,23 +56,22 @@
 
             <Button
                 android:text="@string/buttonAccueilAddContact"
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
-                android:id="@+id/buttonAccueilAddContact"
-                android:layout_weight="0.99" />
+                android:layout_width="108dp"
+                android:layout_height="99dp"
+                android:id="@+id/buttonAccueilAddContact" />
 
             <Button
                 android:text="@string/buttonAccueilGererContact"
-                android:layout_width="wrap_content"
-                android:layout_height="91dp"
+                android:layout_width="114dp"
+                android:layout_height="102dp"
                 android:id="@+id/buttonAccueilGererContact" />
 
             <Button
                 android:text="@string/buttonAccueilInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="91dp"
-                android:id="@+id/buttonAccueilInfo"
-                android:layout_weight="1.01" />
+                android:layout_width="131dp"
+                android:layout_height="95dp"
+                android:id="@+id/buttonAccueilInfo" />
+
         </LinearLayout>
 
     </LinearLayout>
