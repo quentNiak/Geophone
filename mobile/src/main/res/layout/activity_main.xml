@@ -61,11 +61,19 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:text="@string/buttonManageContact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/buttonManageContact" />
+
+    <Button
         android:text="@string/buttonTextAccueilCreateContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonGetBluetooth"
-        android:layout_alignEnd="@+id/buttonCall"
-        android:id="@+id/buttonAccueilCreateContact" />
+        android:id="@+id/buttonAccueilCreateContact"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/buttonBluetoothON" />
 
 </RelativeLayout>

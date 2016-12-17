@@ -51,8 +51,8 @@ public class Listener implements OnClickListener{
         // Vibrate for 1000 milliseconds
         vib.vibrate(1000);
 
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:0610466129"));
+        //Intent callIntent = new Intent(Intent.ACTION_CALL);
+        //callIntent.setData(Uri.parse("tel:0610466129"));
 
         /*BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
         Intent turnOnBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);

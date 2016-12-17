@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
+
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -31,11 +32,23 @@ import java.util.List;
 import java.util.Set;
 
 
-
 public class MainActivity extends AppCompatActivity {
 
     //private final static int REQUEST_ENABLE_BT = 0;
     final Context context = this;
+    private Bundle testBundle;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        testBundle = savedInstanceState;
+        super.onCreate(testBundle);
+        setContentView(R.layout.activity_main);
+        //testBundle = savedInstanceState;
+
+        //addListenerOnButton();
+
+    }
 
     @Override
     protected void onStart() {
@@ -43,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         //addListenerOnButton();
 
-        /*Button buttonVibrate = (Button) findViewById(R.id.buttonVibrate);
+        Button buttonVibrate = (Button) findViewById(R.id.buttonVibrate);
         Button buttonCall = (Button) findViewById(R.id.buttonCall);
 
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
+        //Intent callIntent = new Intent(Intent.ACTION_CALL);
 
 
         Listener buttonVibrateListener = new Listener(buttonVibrate);
@@ -58,55 +72,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         buttonVibrate.setOnClickListener(buttonVibrateListener);
-        buttonCall.setOnClickListener(buttonCallListener);
+        //buttonCall.setOnClickListener(buttonCallListener);
+
+        buttonCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:0668292738"));
+                if (ActivityCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overridng
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    System.out.println("Hello");
+                    return;
+                }
+                startActivity(callIntent);
+                System.out.println("Hello");
 
 
-
-        Button buttonBluetooth = (Button) findViewById(R.id.buttonCall);
-        Intent bluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-        BluetoothAdapter BA = BluetoothAdapter.getDefaultAdapter();
-
-        Listener buttonBluetoothListener = new Listener(buttonBluetooth);
-        buttonBluetoothListener.setContext(getApplicationContext());
-        buttonBluetooth.setOnClickListener(buttonBluetoothListener);
-
-        if (ActivityCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        startActivity(callIntent);
-
-        if (checkSelfPermission(Manifest.permission.CALL_PHONE)
-                != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        startActivity(callIntent);*/
+              }
+        });
 
 
-        //Button buttonBluetooth = (Button) findViewById(R.id.buttonBluetooth);
-
-        //Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-
-        /*Listener buttonBluetoothListener = new Listener(buttonBluetooth, enableBtIntent);
-        Listener buttonBluetoothListener = new Listener(buttonBluetooth);
-        buttonBluetoothListener.setContext(getApplicationContext());
-        buttonBluetooth.setOnClickListener(buttonBluetoothListener);*/
-
-        /*// SI BLUETOOTH OFF, DEMANDE A USER D'ALLUMER LE BLUETOOTH
-        if (!blueAdapter.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-        }
-        else{
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-
-        }
-
-        // SI BLUETOOTH OFF, ACTIVATION DU BLUETOOTH SANS DEMANDE A USER
-        if (!blueAdapter.isEnabled()) {
-            blueAdapter.enable();
-        }*/
 
 
 
@@ -216,27 +207,40 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v) {
 
                     Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
-                    System.out.println("CHANGE DECRAN BATARD!!");
+                    System.out.println("VA A LECRAN AJOUT CONTACT BATARD!!");
                     startActivity(intent);
                     finish();
 
                 }
 
             });
+
+        Button buttonAccueilManageContact = (Button) findViewById(R.id.buttonManageContact);
+
+        buttonAccueilManageContact.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, ManageContactActivity.class);
+                System.out.println("VA A LECRAN GESTION CONTACT BATARD!!");
+                startActivity(intent);
+                finish();
+
+            }
+
+        });
+
        // }
+
+        /*if (ActivityCompat.checkSelfPermission(MainActivity.this,Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);*/
 
 }
 
-
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        //addListenerOnButton();
-
-    }
 
     @Override
     public void onStop() {

@@ -18,4 +18,8 @@
     <string name="textWifiContact">Réseau WIFI</string>
     <string name="buttonTextAddContactSave">Enregistrer Contact</string>
     <string name="buttonTextAddContactBack">Annuler</string>
+    <string name="buttonModifyContact">Modifier</string>
+    <string name="buttonDeleteContact">Supprimer</string>
+    <string name="buttonManageContactBack">Annuler</string>
+    <string name="buttonManageContact">Gérer Contact</string>
 </resources>
