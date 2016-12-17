@@ -56,4 +56,10 @@
     <string name="buttonGetGPS">Récupérer Coordonnées GPS</string>
     <string name="buttonDisplayMap">Afficher Carte</string>
 
+    <string name="textViewWelcome">Bienvenue sur Geophone!</string>
+    <string name="buttonAccueilRechercher">Rechercher</string>
+    <string name="buttonAccueilAddContact">Ajouter Contact</string>
+    <string name="buttonAccueilGererContact">Gérer Contact</string>
+    <string name="buttonAccueilInfo">Informations</string>
+
 </resources>

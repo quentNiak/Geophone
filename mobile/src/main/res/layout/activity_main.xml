@@ -13,101 +13,65 @@
     tools:context="com.example.quent.geophone.MainActivity">
 
 
-    <Button
-        android:text="@string/call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonVibrate"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="39dp"
-        android:id="@+id/buttonCall" />
-
-    <Button
-        android:text="@string/bluetoothON"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="71dp"
-        android:id="@+id/buttonBluetoothON"
-        android:layout_marginStart="33dp"
-        android:layout_below="@+id/buttonCall"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="@string/bluetoothOFF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonBluetoothOFF"
-        android:layout_alignBaseline="@+id/buttonBluetoothON"
-        android:layout_alignBottom="@+id/buttonBluetoothON"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="28dp" />
-
-    <Button
-        android:text="@string/buttonManageContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/buttonManageContact" />
-
-    <Button
-        android:text="@string/buttonTextAccueilCreateContact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonAccueilCreateContact"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/buttonBluetoothON" />
-
-    <Button
-        android:text="@string/getBluetooth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonGetBluetooth"
-        android:layout_above="@+id/buttonAccueilCreateContact"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="21dp" />
-
-    <Button
-        android:text="@string/buttonInfoAppli"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/buttonGetBluetooth"
-        android:layout_alignEnd="@+id/buttonBluetoothOFF"
-        android:id="@+id/buttonInfoAppli" />
-
-    <Button
-        android:text="@string/buttonSendSMS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonBluetoothON"
-        android:layout_alignParentStart="true"
-        android:id="@+id/buttonSendSMS" />
-
-    <Button
-        android:text="@string/buttonGetGPS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:id="@+id/buttonGetGPS"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:weightSum="1">
 
-    <Button
-        android:text="@string/vibrate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:id="@+id/buttonVibrate"
-        android:layout_below="@+id/buttonGetGPS"
-        android:layout_toEndOf="@+id/buttonSendSMS" />
+        <TextView
+            android:text="@string/textViewWelcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/textViewWelcome"
+            android:textSize="24sp" />
 
-    <Button
-        android:text="@string/buttonDisplayMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonDisplayMap"
-        android:layout_alignBaseline="@+id/buttonCall"
-        android:layout_alignBottom="@+id/buttonCall"
-        android:layout_toEndOf="@+id/buttonCall" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="266dp"
+            android:layout_weight="0.76">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <Button
+            android:text="@string/buttonAccueilRechercher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonAccueilRechercher" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="84dp">
+
+            <Button
+                android:text="@string/buttonAccueilAddContact"
+                android:layout_width="wrap_content"
+                android:layout_height="90dp"
+                android:id="@+id/buttonAccueilAddContact"
+                android:layout_weight="0.99" />
+
+            <Button
+                android:text="@string/buttonAccueilGererContact"
+                android:layout_width="wrap_content"
+                android:layout_height="91dp"
+                android:id="@+id/buttonAccueilGererContact" />
+
+            <Button
+                android:text="@string/buttonAccueilInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="91dp"
+                android:id="@+id/buttonAccueilInfo"
+                android:layout_weight="1.01" />
+        </LinearLayout>
+
+    </LinearLayout>
 </RelativeLayout>
