@@ -8,10 +8,6 @@ package com.example.quent.geophone;
         import static android.content.Context.LOCATION_SERVICE;
 
 
-/**
- * Created by Guillaume on 17/12/2016.
- */
-
 public class LocationGPS {
 
 

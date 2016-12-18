@@ -3,8 +3,10 @@ package com.example.quent.geophone;
 import android.*;
 import android.Manifest;
 import android.app.PendingIntent;
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.IntentFilter;
 import android.location.Location;
 
 import android.content.Context;
@@ -16,6 +18,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.telephony.SmsManager;
 import android.view.View;
 
 import android.widget.Button;
@@ -42,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private String deviceName ="telephone Cible";
 
     private SmsReceiver broadcastReceiver;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         localisationPerso = new LocationGPS(getApplicationContext());
 
-
+        initBroadcastReceiver();
 
          // On vérifie les Permissions de l'utilisateur : GPS, SMS, ...
         if(checkForPermissions(this)==true){
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             //Si on a pas les droits, on les demande
             Toast.makeText(getApplicationContext(),"Vous ne disposez pas des autorisations suffisantes", Toast.LENGTH_LONG).show();
             permissionManagement();
-            //finish();
+            finish();
         }
     }
 
@@ -81,7 +85,12 @@ public class MainActivity extends AppCompatActivity {
         buttonVibrate.setOnClickListener(buttonVibrateListener);*/
 
 
-
+        /*Button boutonGPS = (Button) findViewById(R.id.GPS);
+        boutonGPS.setOnClickListener(this);
+        Button boutonMAP = (Button) findViewById(R.id.map);
+        boutonMAP.setOnClickListener(this);
+        Button boutonSMS = (Button) findViewById(R.id.sendSMS);
+        boutonSMS.setOnClickListener(this);*/
 
 
         Button buttonBluetoothON = (Button) findViewById(R.id.buttonBluetoothON);
@@ -184,6 +193,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("device name", deviceName);
                 startActivity(intent);
                 finish();
+                findPhoneRequest("0604419214");
+
 
             }
 
@@ -220,6 +231,33 @@ public class MainActivity extends AppCompatActivity {
 
 }
 
+    /*//Gestion des activités
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.GPS:
+                Location localisationActuelle = localisationPerso.getLastLocation();
+                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + localisationActuelle.getLatitude()
+                        + "\nLong: " + localisationActuelle.getLongitude(), Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.map:
+                Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                //Toast.makeText(getApplicationContext(), "ici", Toast.LENGTH_LONG).show();
+                intent.putExtra("latitudeSearch", latitudeCible );
+                intent.putExtra("longitudeSearch", longitudeCible);
+                intent.putExtra("device name", deviceName);
+                startActivity(intent);
+                finish();
+                break;
+
+            case R.id.sendSMS:
+                //Toast.makeText(getApplicationContext(), "ici1", Toast.LENGTH_LONG).show();
+                findPhoneRequest("0604419214");
+                break;
+        }
+    }*/
+
 
     @Override
     public void onStop() {
@@ -228,7 +266,92 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
     // FONCTIONS GPS//
+
+    private void findPhoneRequest(String phoneNumber)
+    {
+        sendSMS(phoneNumber, "GEOPHONE REQUEST GPSposition");
+    }
+
+    private void sendSMS(String phoneNumber, String message){
+        try {
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+
+            //Toast.makeText(getApplicationContext(), "SMS sent.",Toast.LENGTH_LONG).show();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(),"Sending SMS failed.",Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        }
+    }
+
+
+
+    private void initBroadcastReceiver() {
+        //Toast.makeText(getApplicationContext(), "ici", Toast.LENGTH_LONG).show();
+
+        broadcastReceiver = new SmsReceiver() {
+
+            @Override
+            protected void onNewSMS(String message, String phone) {
+
+                //Toast.makeText(getApplicationContext(), "ici", Toast.LENGTH_LONG).show();
+                //verifie la forme du message
+
+
+                //Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+
+                if (message.startsWith("GEOPHONE REQUEST")) {
+                    String msg = message.substring(8);
+
+                    //Toast.makeText(getApplicationContext(), "ici2", Toast.LENGTH_LONG).show();
+
+                    Location localisationActuelle = localisationPerso.getLastLocation();
+                    StringBuilder response = new StringBuilder();
+                    response.append("GEOPHONE REPONSE ");
+                    if (localisationActuelle != null) {
+                        response.append(localisationActuelle.getLatitude());
+                        response.append(";");
+                        response.append(localisationActuelle.getLongitude());
+                    } else {
+                        response.append("LOCATION_NULL");
+                    }
+
+                    //Toast.makeText(getApplicationContext(), phone, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_LONG).show();
+                    sendSMS(phone, response.toString());
+
+                }
+
+                //Lecture d'un sms de répsons
+                if(message.startsWith("GEOPHONE REPONSE")) {
+
+                    //si la reponse est non vide
+                    if (!message.contains("LOCATION_NULL")) {
+                        int length = 17;
+
+                        //On supprime le header du message pour récupérer que les coordonnées GPS
+                        String position = message.substring(length);
+                        Location locationReceived = new Location("");
+                        latitudeCible = (Double.parseDouble(position.split(";")[0]));
+                        longitudeCible = (Double.parseDouble(position.split(";")[1]));
+                        Toast.makeText(getApplicationContext(), String.valueOf(latitudeCible) , Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        };
+        //Registering the broadcast receiver
+        IntentFilter intentFilter = new IntentFilter("android.provider.Telephony.SMS_RECEIVED");
+        intentFilter.setPriority(999);
+        this.registerReceiver(broadcastReceiver, intentFilter);
+
+    }
+
+
+
 
     protected boolean checkForPermissions (Activity activity){
 

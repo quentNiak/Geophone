@@ -6,56 +6,49 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
-import android.util.Log;
 import android.widget.Toast;
 
-/**
- * Created by quent on 17/12/2016.
- */
 
 public abstract class SmsReceiver extends BroadcastReceiver {
 
-    private String numberTel;
-    private SmsMessage[] currentSMS;
-    private String messageContent;
-    private Object[] pdus;
     private final String ACTION_RECEIVE_SMS = "android.provider.Telephony.SMS_RECEIVED";
-
-    protected abstract void onNewSMS(String sms, String phone);
+    private String data;
+    private String phoneNumber;
+    private Object[] pdus;
+    private SmsMessage[] messages;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        data="";
+
+        //Toast.makeText(context, "ici", Toast.LENGTH_LONG).show();
+
         if (intent.getAction().equals(ACTION_RECEIVE_SMS)) {
-            //---get the SMS message passed in---
             Bundle bundle = intent.getExtras();
+
             if (bundle != null) {
-                //---retrieve the SMS message received---
-                pdus = (Object[]) bundle.get("pdus");
-                currentSMS = new SmsMessage[pdus.length];
+                pdus= (Object[]) bundle.get("pdus");
+
+                messages = new SmsMessage[pdus.length];
 
                 for (int i = 0; i < pdus.length; i++) {
-                    String format = bundle.getString("format");
-                    currentSMS[i] = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i], bundle.getString("format"));
+                    }else{
+                        messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+                    }
                 }
 
-                if (currentSMS.length > -1) {
-                    for (int i = 0; i < currentSMS.length; i++) {
-                        messageContent += currentSMS[i].getMessageBody();
+                if (messages.length > -1) {
+                    for(int i=0;i<messages.length;i++){
+                        data+=messages[i].getMessageBody();
                     }
-                    numberTel = currentSMS[0].getOriginatingAddress();
-
-                    if (currentSMS[0].equals("+33")) {
-                        numberTel = currentSMS[0].getDisplayOriginatingAddress().replace("+33", "0");
-                        System.out.println("+33 MA GUEULE!!");
-                    }
-
-                    onNewSMS(messageContent, numberTel);
+                    phoneNumber = messages[0].getDisplayOriginatingAddress().replace("+33", "0");
+                    onNewSMS(data, phoneNumber);
                 }
-
-                //Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
             }
-
         }
-
     }
+
+    protected abstract void onNewSMS(String sms, String phone);
 }
